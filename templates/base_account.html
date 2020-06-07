@@ -1,0 +1,41 @@
+{% load adminlte_helpers i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title_outer %}
+        <title>{% block title %}갈라치기{% endblock %}</title>
+    {% endblock %}
+
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% endblock %}
+
+    {% block stylesheets %}
+        {% include 'styles.html' %}
+    {% endblock %}
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body style="background: url({% static 'img/intro.png' %})" class="page-holder bg-cover hold-transition login-page">
+    {% block body %}
+        {% block content_outer %}
+            <section class="content">
+                {% block content_block_wrap %}
+                    {% block content %}{% endblock %}
+                {% endblock %}
+            </section>
+        {% endblock %}
+    {% endblock body %}
+
+    {% block javascript %}
+        {% include 'scripts.html' %}
+    {% endblock %}
+
+    {% block extra_js %}{% endblock %}
+
+    {% block extra_foot %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'betting/base.html' %}
+
+{% block content %}
+    <br/>
+    <h1>베팅 : 결과 확인</h1>
+    <br/>
+    {% if my_match_list %}
+        {% for match in my_match_list %}
+            <table class="table table-bordered table-dark text-center">
+                <tbody>
+                    <tr>
+                        <td colspan="4">{{ match.match_time }}</td>
+                    </tr>
+                    <tr>
+                        {% if match.match_result_1 == "1" %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-secondary disabled">경기 중</button></td>
+                        {% elif match.match_result_1 == "2" %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-primary disabled">적중</button></td>
+                        {% elif match.match_result_1 == "3" %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-danger disabled">미적중</button></td>
+                        {% else %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-primary disabled">적특</button></td>
+                        {%  endif %}
+                        {% if match.match_condition_1 == "U" %}
+                            <td style="border:red solid 1px !important; display: block;">{{ match.team_name_1 }}&nbsp;&nbsp;<span class="badge badge-warning">U</span><br/>{{ match.team_odds_1 }}</td>
+                            <td class="align-middle w-25">{{ match.match_desc_1 }}</td>
+                            <td class=" w-25">{{ match.team_name_2 }}&nbsp;&nbsp;<span class="badge badge-warning">O</span><br/>{{ match.team_odds_2 }}</td>
+                        {% else %}
+                            <td style="border:red solid 1px !important; display: block;">{{ match.team_name_1 }}&nbsp;&nbsp;<span class="badge badge-warning">O</span><br/>{{ match.team_odds_1 }}</td>
+                            <td class="align-middle w-25">{{ match.match_desc_1 }}</td>
+                            <td class=" w-25">{{ match.team_name_2 }}&nbsp;&nbsp;<span class="badge badge-warning">U</span><br/>{{ match.team_odds_2 }}</td>
+                        {%  endif %}
+                    </tr>
+                    <tr>
+                        {% if match.match_result_2 == "1" %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-secondary disabled">경기 중</button></td>
+                        {% elif match.match_result_2 == "2" %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-primary disabled">적중</button></td>
+                        {% elif match.match_result_2 == "3" %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-danger disabled">미적중</button></td>
+                        {% else %}
+                            <td class="align-middle w-25"><button type="button" class="btn btn-primary disabled">적특</button></td>
+                        {%  endif %}
+                        {% if match.match_condition_2 == "U" %}
+                            <td style="border:red solid 1px !important; display: block;">{{ match.team_name_3 }}&nbsp;&nbsp;<span class="badge badge-warning">U</span><br/>{{ match.team_odds_3 }}</td>
+                            <td class="align-middle w-25">{{ match.match_desc_2 }}</td>
+                            <td class=" w-25">{{ match.team_name_4 }}&nbsp;&nbsp;<span class="badge badge-warning">O</span><br/>{{ match.team_odds_4 }}</td>
+                        {% else %}
+                            <td style="border:red solid 1px !important; display: block;">{{ match.team_name_3 }}&nbsp;&nbsp;<span class="badge badge-warning">O</span><br/>{{ match.team_odds_3 }}</td>
+                            <td class="align-middle w-25">{{ match.match_desc_2 }}</td>
+                            <td class=" w-25">{{ match.team_name_4 }}&nbsp;&nbsp;<span class="badge badge-warning">U</span><br/>{{ match.team_odds_4 }}</td>
+                        {%  endif %}
+                    </tr>
+                    <tr>
+                        {% if match.match_status == "4" %}
+                            <td class=" w-25"><button type="button" class="btn btn-secondary disabled">경기 중</button></td>
+                            <td colspan="3">수익 : 미정</td>
+                        {% else %}
+                            <td class=" w-25"><button type="button" class="btn btn-danger disabled">실패</button></td>
+                            <td colspan="3">수익 : {{ match.bet_devidends }}</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+            <br/><br/>
+        {% endfor %}
+    {% else %}
+        <tr><p>종료된 베팅이 없습니다.</p></tr>
+    {% endif %}
+{% endblock %}

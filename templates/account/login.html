@@ -1,0 +1,44 @@
+{% extends 'base_account.html' %}
+
+{% block content %}
+    <div class="login-box">
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">로그인</p>
+                <form action="{% url 'account:login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input name="username" type="text" class="form-control" placeholder="아이디">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input name="password" type="password" class="form-control" placeholder="비밀번호">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if field.errors %}
+                        <span style="color:red">{{field.errors}}</span>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">로그인</button>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <p class="mb-1">
+                    아직 계정이 없으십니까?&nbsp;&nbsp;<span><a href="{% url 'account:sign_up' %}">회원가입</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
