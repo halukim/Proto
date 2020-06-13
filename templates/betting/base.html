@@ -6,6 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/betting.css' %}">
+
+
+
+        <!-- Theme style -->
+        <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/dist/css/adminlte.min.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css' %}">
+        <!-- date-range-picker -->
+        <link rel="stylesheet" type="text/css" href="{% static 'admin-lte/plugins/toastr/toastr.min.css' %}">
+
+
         <title>갈라치기</title>
     </head>
     <body class="container-fluid">
@@ -17,7 +28,7 @@
                 <div class="list-group list-group-flush">
                     <a href="/match/available/" class="list-group-item list-group-item-action bg-light">베팅 : 참여</a>
                     <a href="/match/finish/" class="list-group-item list-group-item-action bg-light">베팅 : 결과 확인</a>
-                    <a href="/payment/" class="list-group-item list-group-item-action bg-light">입/출금 & 베팅 내역 보기</a>
+                    <a href="/payment/" class="list-group-item list-group-item-action bg-light">거래 내역</a>
                     <a href="/help/" class="list-group-item list-group-item-action bg-light">1:1 문의하기</a>
                 </div>
             </div>
@@ -41,8 +52,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {% if user.is_authenticated %}
                                         <a class="dropdown-item" href="{% url 'logout' %}">로그아웃</a>
-                                        <a class="dropdown-item" href="/password_reset/">비밀번호 변경</a>
-                                        <a class="dropdown-item" href="/account_reset/">계좌 변경</a>
+{#                                        <a class="dropdown-item" href="/password_reset/">비밀번호 변경</a>#}
+{#                                        <a class="dropdown-item" href="/account_reset/">계좌 변경</a>#}
                                     {% else %}
                                         <a class="dropdown-item" href="{% url 'login' %}">로그인</a>
                                     {% endif %}
@@ -76,11 +87,45 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
+        <script src="{% static 'admin-lte/plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+        <script src="{% static 'admin-lte/plugins/toastr/toastr.min.js' %}"></script>
+        <script src="{% static 'admin-lte/dist/js/adminlte.min.js' %}"></script>
+        <script src="{% static 'admin-lte/dist/js/demo.js' %}"></script>
+
+        
         <!-- Menu Toggle Script -->
         <script>
             $("#menu-toggle").click(function(e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
+            });
+
+            $(function() {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+
+                $('.toastsDefaultSuccess').click(function() {
+                    $(document).Toasts('create', {
+                        class: 'bg-success',
+                        title: '배팅 참여',
+                        {#subtitle: 'Subtitle',#}
+                        body: '충전 후 배팅에 참여해주세요.'
+                    })
+                });
+
+                $('.toastsDefaultInfo').click(function() {
+                    $(document).Toasts('create', {
+                        class: 'bg-info',
+                        title: '배팅 마감',
+                        {#subtitle: 'Subtitle',#}
+                        body: '해당 배팅은 마감되었습니다. 다른 배팅에 참여해주세요.'
+                    })
+                });
             });
         </script>
 

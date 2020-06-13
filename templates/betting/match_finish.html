@@ -55,8 +55,11 @@
                         {% if match.match_status == "4" %}
                             <td class=" w-25"><button type="button" class="btn btn-secondary disabled">경기 중</button></td>
                             <td colspan="3">수익 : 미정</td>
+                        {% elif match.match_result_1 == "3" or match.match_result_2 == "3" %}
+                            <td class=" w-25"><button type="button" class="btn btn-secondary disabled">실패</button></td>
+                            <td colspan="3">수익 : 0</td>
                         {% else %}
-                            <td class=" w-25"><button type="button" class="btn btn-danger disabled">실패</button></td>
+                            <td class=" w-25"><button type="button" class="btn btn-danger disabled">성공</button></td>
                             <td colspan="3">수익 : {{ match.bet_devidends }}</td>
                         {% endif %}
                     </tr>

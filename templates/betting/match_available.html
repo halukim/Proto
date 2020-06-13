@@ -13,9 +13,9 @@
                     </tr>
                     <tr>
                         {% if match.match_status == "3" %}
-                            <td class="align-middle w-25" rowspan="2"><button type="button" class="btn btn-info disabled"><b>마감</b></button><br/><br/>{{ match.final_odds }}<br/><br/>{{ match.bet_amount }}</td>
+                            <td class="align-middle w-25" rowspan="2"><button type="button" class="btn btn-info toastsDefaultInfo"><b>마감</b></button><br/><br/>{{ match.final_odds }}<br/><br/>{{ match.bet_amount }}</td>
                         {% else %}
-                            <td class="align-middle w-25" rowspan="2"><button type="button" class="btn btn-success"><b>베팅</b></button><br/><br/>{{ match.final_odds }}<br/><br/>{{ match.bet_amount }}</td>
+                            <td class="align-middle w-25" rowspan="2"><button type="button" class="btn btn-success toastsDefaultSuccess"><b>베팅</b></button><br/><br/>{{ match.final_odds }}<br/><br/>{{ match.bet_amount }}</td>
                         {% endif %}
                         {% if match.match_condition_1 == "U" %}
                             <td style="border:red solid 1px !important; display: block;">{{ match.team_name_1 }}&nbsp;&nbsp;<span class="badge badge-warning">U</span><br/>{{ match.team_odds_1 }}</td>
